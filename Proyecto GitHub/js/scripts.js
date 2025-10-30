@@ -9,7 +9,9 @@
 
 window.addEventListener('DOMContentLoaded', event => {
 
-    // Navbar shrink function
+    // ----------------------------------------------------
+    // 1. FUNCIONALIDAD EXISTENTE: Navbar shrink function
+    // ----------------------------------------------------
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {
@@ -50,5 +52,31 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+    
+    // ----------------------------------------------------
+    // 2. NUEVA FUNCIONALIDAD: Botón "Back to Top" (Volver Arriba)
+    // ----------------------------------------------------
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    
+    if (backToTopBtn) {
+        const scrollThreshold = 500; // Distancia de desplazamiento en píxeles para mostrar el botón.
 
+        const backToTopHandler = function() {
+            const scrollDistance = window.scrollY;
+
+            if (scrollDistance > scrollThreshold) {
+                // Muestra el botón cuando se supera el umbral
+                backToTopBtn.style.display = 'block';
+            } else {
+                // Oculta el botón
+                backToTopBtn.style.display = 'none';
+            }
+        };
+
+        // Asocia la función al evento de desplazamiento
+        document.addEventListener('scroll', backToTopHandler);
+        
+        // Verifica el estado inicial en caso de que la página se cargue en medio
+        backToTopHandler();
+    }
 });
